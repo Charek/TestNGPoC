@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'RestClientExample'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+     compile group: 'org.testng', name: 'testng', version: '6.14.3'
+     compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
+    compile 'org.glassfish.jersey.core:jersey-client:2.26'
+    compile 'org.glassfish.jersey.inject:jersey-hk2:2.26'
+    compile group: 'javax.json', name: 'javax.json-api', version: '1.1.4'
+    compile group: 'org.glassfish', name: 'javax.json', version: '1.1.4'
+}
+
+test {
+    useTestNG {
+         suites "src/test/java/mytest.xml"
+        useDefaultListeners = false
+    }
+    reports.html.enabled = false 
+     testLogging {
+        showStandardStreams = true
+    }
+}
